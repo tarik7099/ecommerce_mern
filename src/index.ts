@@ -1,6 +1,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./route/userRoute";
+import { seedInitailProducts } from "./services/productService";
+import  productRouter  from "./route/productRouter";
+
 
 const app = express();
 const port = 3001;
@@ -15,9 +18,9 @@ mongoose.connect("mongodb+srv://tkhadri6:4vQHsISYB8FZbZLn@ecommerce.n71hx.mongod
 
 
 app.use('/user', userRoute)
+app.use('/product', productRouter)
 
-
-
+seedInitailProducts()
 
 app.listen(port , ()=> {
   console.log(`server is running at : http://localhost:${port}`)
