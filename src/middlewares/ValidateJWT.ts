@@ -2,10 +2,9 @@ import { Request, Response } from "express";
 import { NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import userModel from "../models/userModel";
+import {ExtendRequest} from "../types/extendedRequest"
 
-interface ExtendRequest extends Request {
-  user?: any;
-}
+
 const validatJwt = (req: ExtendRequest, res: Response, next: NextFunction) => {
   const autorizationHeader = req.get("authorization");
   if (!autorizationHeader) {
@@ -18,13 +17,13 @@ const validatJwt = (req: ExtendRequest, res: Response, next: NextFunction) => {
     res.status(403).send("token no found");
     return;
   }
-  jwt.verify(token, "8WEKLj0gAF", async (err, payload) => {
+  jwt.verify(token, "8WEKLj0gAF+drUDUz0Y1", async (err, payload) => {
     if (err) {
       res.status(403).send("Invalid token");
       return;
     }
     // fetc use from data pelyoad
-    if (payload) {
+    if (!payload) {
       res.status(403).send("Invalid token pelyoad");
       return;
     }

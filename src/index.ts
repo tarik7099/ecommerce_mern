@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRoute from "./route/userRoute";
 import { seedInitailProducts } from "./services/productService";
-import  productRouter  from "./route/productRouter";
+import productRoute  from "./route/productRoute";
 
 import cardRoute from "./route/cardRoute"
 const app = express();
@@ -18,7 +18,7 @@ mongoose.connect("mongodb+srv://tkhadri6:4vQHsISYB8FZbZLn@ecommerce.n71hx.mongod
 
 
 app.use('/user', userRoute)
-app.use('/product', productRouter)
+app.use('/product', productRoute)
 app.use('/cart', cardRoute)
 
 seedInitailProducts()
