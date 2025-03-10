@@ -4,9 +4,9 @@ import userRoute from "./route/userRoute";
 import { seedInitailProducts } from "./services/productService";
 import  productRouter  from "./route/productRouter";
 
-
+import cardRoute from "./route/cardRoute"
 const app = express();
-const port = 3001;
+const port = 3005;
 
 app.use(express.json())
 
@@ -19,6 +19,7 @@ mongoose.connect("mongodb+srv://tkhadri6:4vQHsISYB8FZbZLn@ecommerce.n71hx.mongod
 
 app.use('/user', userRoute)
 app.use('/product', productRouter)
+app.use('/cart', cardRoute)
 
 seedInitailProducts()
 
